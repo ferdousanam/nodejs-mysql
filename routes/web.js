@@ -1,13 +1,10 @@
-import {Router} from "express";
-import TimeLogger from "../app/http/middlewares/TimeLogger";
+import Router from "../core/Router";
 import HomeController from "../app/http/controllers/HomeController";
 import ProductController from "../app/http/controllers/ProductController";
+import RouteServiceProvider from "../app/providers/RouteServiceProvider";
 
-const router = Router()
-
-// middleware that is specific to this router
-router.use(TimeLogger.timeLog)
-
+RouteServiceProvider.boot()
+const router = Router.getInstance()
 router.get('/', HomeController.index)
 router.get('/about', HomeController.about)
 router.get('/products', ProductController.index)
